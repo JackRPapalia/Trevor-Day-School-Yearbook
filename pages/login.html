@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trevor Day School Yearbook - Login</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/resources/style.css">
+</head>
+<body>
+
+  <!-- Navbar placeholder -->
+  <div id="navbar"></div>
+
+  <h1>Login to Trevor Day School Yearbook Website</h1>
+  <button id="login">Sign in with Google</button>
+
+  <!-- Firebase Auth Module -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+
+    // ======= Firebase config =======
+    const firebaseConfig = {
+      apiKey: "AIzaSyBuuzamF59UD32dJkuj-POjgncJtvFCpf8",
+      authDomain: "yearbook-site.firebaseapp.com",
+      projectId: "yearbook-site",
+      storageBucket: "yearbook-site.firebasestorage.app",
+      messagingSenderId: "368439470997",
+      appId: "1:368439470997:web:a7bb371e1cbcc8831e249c",
+      measurementId: "G-CVZC3TQ5R6"
+    };
+
+    // ======= Initialize Firebase =======
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginButton = document.getElementById("login");
+
+      // ======= Login Button Click =======
+      loginButton.addEventListener("click", async () => {
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
+
+          // Restrict to Trevor Day emails
+          if (user.email.endsWith("@trevorday.org")) {
+            window.location.href = "pages/dashboard.html";
+          } else {
+            alert("Only Trevor Day School accounts are allowed.");
+            await signOut(auth);
+          }
+        } catch (error) {
+          console.error("Login failed:", error);
+          alert("Login failed. Check console for details.");
+        }
+      });
+
+      // ======= Auto redirect logged-in users =======
+      onAuthStateChanged(auth, user => {
+        if (user && user.email.endsWith("@trevorday.org")) {
+          window.location.href = "pages/dashboard.html";
+        }
+      });
+
+      // ======= Load Navbar =======
+      fetch("/resources/navbar.html")
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("navbar").innerHTML = data;
+        })
+        .catch(err => console.error("Navbar load failed:", err));
+    });
+  </script>
+
+</body>
+</html>

@@ -42,3 +42,30 @@
     font-size: 36px;
     margin-bottom: 20px;
 }
+
+<style>
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f2f2f2;
+  }
+
+  #login {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #3a7d44; /* green */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #login:hover {
+    background-color: #2d5a3d;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
