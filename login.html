@@ -54,7 +54,7 @@
 
           // Restrict to Trevor Day emails
           if (user.email.endsWith("@trevorday.org")) {
-            window.location.href = "pages/dashboard.html";
+            window.location.href = "dashboard.html";
           } else {
             alert("Only Trevor Day School accounts are allowed.");
             await signOut(auth);
@@ -68,12 +68,12 @@
       // ======= Auto redirect logged-in users =======
       onAuthStateChanged(auth, user => {
         if (user && user.email.endsWith("@trevorday.org")) {
-          window.location.href = "pages/dashboard.html";
+          window.location.href = "dashboard.html";
         }
       });
 
       // ======= Load Navbar =======
-      fetch("/resources/navbar.html")
+      fetch("resources/navbar.html")
         .then(response => response.text())
         .then(data => {
           document.getElementById("navbar").innerHTML = data;
