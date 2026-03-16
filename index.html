@@ -26,6 +26,7 @@
       .then(response => response.text())
       .then(data => {
         document.getElementById("navbar").innerHTML = data;
+        document.body.style.paddingTop = document.querySelector(".nav").offsetHeight + "px";
       });
   </script>
 </body>
