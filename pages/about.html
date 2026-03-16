@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="/Trevor-Day-School-Yearbook/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trevor Day School Yearbook</title>
-    <link rel="stylesheet" href="/resources/style.css">
+    <link rel="stylesheet" href="resources/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +20,7 @@
     <h1>Welcome to the Trevor Day School Yearbook</h1>
  </div>
  <script>
-    fetch("/resources/navbar.html")
+    fetch("resources/navbar.html")
   .then(response => response.text())
   .then(data => {
     document.getElementById("navbar").innerHTML = data;
