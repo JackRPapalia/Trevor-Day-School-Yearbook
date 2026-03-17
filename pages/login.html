@@ -26,12 +26,11 @@
   <!-- Firebase Auth Module -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-analytics.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
     // ======= Firebase config =======
     const firebaseConfig = {
-      apiKey: "AIzaSyAUifIXw7K8vRTkRk7qZ22uUWqLzc86mn8",
+      apiKey: "AIzaSyBuuzamF59UD32dJkuj-POjgncJtvFCpf8",
       authDomain: "yearbook-site.firebaseapp.com",
       projectId: "yearbook-site",
       storageBucket: "yearbook-site.firebasestorage.app",
@@ -42,7 +41,6 @@
 
     // ======= Initialize Firebase =======
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
 
