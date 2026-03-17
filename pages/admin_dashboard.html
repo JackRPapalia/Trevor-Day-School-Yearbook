@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trevor Day School Yearbook</title>
+  <link rel="stylesheet" href="../resources/style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+  <!-- Navigation Menu-->
+  <div id="navbar"></div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>Admin Dashboard</h1>
+  </div>
+  <section class="details-section">
+    <h2>Admin Tools</h2>
+    <div class="admin-tools">
+  <script type="module" src="../resources/navbar.js"></script>
+  <script type="module">
+    import { auth, db } from "../resources/firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+    onAuthStateChanged(auth, async user => {
+      if (!user) {
+        window.location.href = "/Trevor-Day-School-Yearbook/";
+        return;
+      }
+
+      const userDoc = await getDoc(doc(db, "users", user.email));
+      const role = userDoc.exists() ? userDoc.data().role : null;
+
+      if (role !== "admin") {
+        window.location.href = "/Trevor-Day-School-Yearbook/";
+      }
+    });
+  </script>
+</body>
+
+</html>
