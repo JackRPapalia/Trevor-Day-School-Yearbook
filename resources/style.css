@@ -53,6 +53,7 @@
 body {
     font-family: 'Source Sans 3', sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
