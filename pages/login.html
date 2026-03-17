@@ -23,6 +23,8 @@
   <h1>Login to Trevor Day School Yearbook Website</h1>
   <button id="login">Sign in with Google</button>
 
+  <script type="module" src="../resources/navbar.js"></script>
+
   <!-- Firebase Auth Module -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
@@ -83,14 +85,6 @@
         }
       });
 
-      // ======= Load Navbar =======
-      fetch("../navbar.html")
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("navbar").innerHTML = data;
-        document.body.style.paddingTop = document.querySelector(".nav").offsetHeight + "px";
-        })
-        .catch(err => console.error("Navbar load failed:", err));
     });
   </script>
 
