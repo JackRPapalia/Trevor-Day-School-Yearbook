@@ -1,4 +1,4 @@
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 import { auth, db } from "./firebase.js";
 
@@ -16,6 +16,15 @@ fetch(navbarPath)
       const dashboardItem = document.getElementById("nav-dashboard");
 
       if (loginItem) loginItem.style.display = user ? "none" : "";
+
+      const logoutItem = document.getElementById("nav-logout");
+      if (logoutItem) logoutItem.style.display = user ? "" : "none";
+
+      document.getElementById("logout-btn")?.addEventListener("click", async e => {
+        e.preventDefault();
+        await signOut(auth);
+        window.location.href = "/Trevor-Day-School-Yearbook/";
+      });
 
       if (user && dashboardItem) {
         const userDoc = await getDoc(doc(db, "users", user.email));

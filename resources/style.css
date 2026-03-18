@@ -52,11 +52,7 @@
 
 body {
     font-family: 'Source Sans 3', sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin: 0;
     background: #f2f2f2;
 }
 
@@ -76,4 +72,21 @@ body {
 #login:hover {
     background-color: #2d5a3d;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.admin-header {
+    margin-top: 20px; /* To account for the fixed navbar */
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+
+}
+
+.admin-header h1 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    vertical-align: top;
 }
