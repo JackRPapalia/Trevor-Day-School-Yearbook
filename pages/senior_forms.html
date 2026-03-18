@@ -22,10 +22,9 @@
     <h1>Senior Forms</h1>
 
     <!-- Countdowns -->
-     <div id="countdown-title">Loading...</div>
-  <div id="countdown">Loading...</div>
+    <div id="countdowns">Loading...</div>
 
-  <!-- Forms -->
+    <!-- Forms -->
   </div>
   <section class="faqs">
     <div class="faq-container" id="forms-container"></div>
@@ -66,42 +65,56 @@
       });
   </script>
   <script>
-    // Use the raw GitHub Pages URL for JSON if hosted on GitHub
-    const jsonURL = 'countdown.json'; // or 'https://username.github.io/repo-name/countdown.json'
+const jsonURL = 'https://raw.githubusercontent.com/JackRPapalia/Trevor-Day-School-Yearbook/main/resources/countdown.json';
 
-    fetch(jsonURL)
-      .then(response => response.json())
-      .then(data => {
-        const countdownTitle = document.getElementById('countdown-title');
-        const countdownElement = document.getElementById('countdown');
+fetch(jsonURL)
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('countdowns');
+    container.innerHTML = ''; // Clear "Loading..."
 
-        countdownTitle.textContent = data.title;
+    data.forEach((event, index) => {
+      const div = document.createElement('div');
+      div.classList.add('countdown-container');
 
-        const targetDate = new Date(data.date).getTime();
+      const title = document.createElement('div');
+      title.classList.add('countdown-title');
+      title.textContent = event.title;
 
-        const interval = setInterval(() => {
-          const now = new Date().getTime();
-          const distance = targetDate - now;
+      const timer = document.createElement('div');
+      timer.classList.add('countdown-timer');
+      timer.id = `countdown-${index}`;
+      timer.textContent = 'Loading...';
 
-          if (distance <= 0) {
-            clearInterval(interval);
-            countdownElement.textContent = "Time's up!";
-            return;
-          }
+      div.appendChild(title);
+      div.appendChild(timer);
+      container.appendChild(div);
 
-          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const targetDate = new Date(event.date).getTime();
+      const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
-          countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }, 1000);
-      })
-      .catch(err => {
-        document.getElementById('countdown-title').textContent = "Error loading countdown";
-        console.error(err);
-      });
-  </script>
+        if (distance <= 0) {
+          clearInterval(interval);
+          timer.textContent = "Time's up!";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }, 1000);
+    });
+  })
+  .catch(err => {
+    document.getElementById('countdowns').textContent = "Error loading countdowns";
+    console.error(err);
+  });
+</script>
   <script type="module" src="../resources/navbar.js"></script>
 </body>
 

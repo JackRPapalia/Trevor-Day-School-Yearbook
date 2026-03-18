@@ -259,15 +259,16 @@ body {
     margin-top: 20px;
 }
 
-#countdown-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
+#countdowns {
+    display: flex;           /* enables horizontal layout */
+    justify-content: center; /* centers items horizontally */
+    gap: 40px;               /* space between countdowns */
+    flex-wrap: wrap;         /* allows wrapping to next line if screen is too small */
     text-align: center;
 }
 
-#countdown {
+.countdown-container {
     font-size: 1.8rem;
     font-weight: bold;
-    text-align: center;
-
+    min-width: 200px;        /* optional: set a minimum width for each countdown */
 }
