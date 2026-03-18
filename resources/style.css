@@ -250,11 +250,24 @@ body {
 }
 
 .faq-item.active .faq-icon {
-  transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .form {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+}
+
+#countdown-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#countdown {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+
 }
