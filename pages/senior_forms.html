@@ -65,56 +65,61 @@
       });
   </script>
   <script>
-const jsonURL = 'https://raw.githubusercontent.com/JackRPapalia/Trevor-Day-School-Yearbook/main/resources/countdown.json';
+    const jsonURL = 'https://raw.githubusercontent.com/JackRPapalia/Trevor-Day-School-Yearbook/main/resources/countdown.json?t=' + new Date().getTime();
 
-fetch(jsonURL)
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById('countdowns');
-    container.innerHTML = ''; // Clear "Loading..."
+    fetch(jsonURL)
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('countdowns');
+        container.innerHTML = ''; // clear "Loading..."
 
-    data.forEach((event, index) => {
-      const div = document.createElement('div');
-      div.classList.add('countdown-container');
-
-      const title = document.createElement('div');
-      title.classList.add('countdown-title');
-      title.textContent = event.title;
-
-      const timer = document.createElement('div');
-      timer.classList.add('countdown-timer');
-      timer.id = `countdown-${index}`;
-      timer.textContent = 'Loading...';
-
-      div.appendChild(title);
-      div.appendChild(timer);
-      container.appendChild(div);
-
-      const targetDate = new Date(event.date).getTime();
-      const interval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        if (distance <= 0) {
-          clearInterval(interval);
-          timer.textContent = "Time's up!";
+        if (!data || data.length === 0) {
+          // No countdowns: leave container empty
           return;
         }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        data.forEach((event, index) => {
+          const div = document.createElement('div');
+          div.classList.add('countdown-container');
 
-        timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }, 1000);
-    });
-  })
-  .catch(err => {
-    document.getElementById('countdowns').textContent = "Error loading countdowns";
-    console.error(err);
-  });
-</script>
+          const title = document.createElement('div');
+          title.classList.add('countdown-title');
+          title.textContent = event.title;
+
+          const timer = document.createElement('div');
+          timer.classList.add('countdown-timer');
+          timer.id = `countdown-${index}`;
+          timer.textContent = 'Loading...';
+
+          div.appendChild(title);
+          div.appendChild(timer);
+          container.appendChild(div);
+
+          const targetDate = new Date(event.date).getTime();
+          const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+              clearInterval(interval);
+              timer.textContent = "Time's up!";
+              return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+          }, 1000);
+        });
+      })
+      .catch(err => {
+        document.getElementById('countdowns').textContent = "Error loading countdowns";
+        console.error(err);
+      });
+  </script>
   <script type="module" src="../resources/navbar.js"></script>
 </body>
 
