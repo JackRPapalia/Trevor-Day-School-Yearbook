@@ -41,8 +41,11 @@ fetch(navbarPath)
         try {
           const seniorsDoc = await getDoc(doc(db, "config", "classof2027"));
           const members = seniorsDoc.exists() ? seniorsDoc.data().members : [];
+          console.log("Signed in as:", user.email);
+          console.log("Allowed members:", members);
           seniorFormsItem.style.display = members.includes(user.email) ? "" : "none";
-        } catch {
+        } catch (err) {
+          console.error("Senior forms check failed:", err);
           seniorFormsItem.style.display = "none";
         }
       } else {
