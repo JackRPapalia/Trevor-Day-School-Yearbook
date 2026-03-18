@@ -57,12 +57,7 @@
 
           // Restrict to Trevor Day emails
           if (user.email.endsWith("@trevor.org")) {
-            if (window.opener) {
-              window.opener.location.reload();
-              window.close();
-            } else {
-              window.location.href = "/Trevor-Day-School-Yearbook/";
-            }
+            window.location.href = "/Trevor-Day-School-Yearbook/";
           } else {
             alert("Only Trevor Day School accounts are allowed.");
             await signOut(auth);
@@ -76,12 +71,7 @@
       // ======= Auto redirect logged-in users =======
       onAuthStateChanged(auth, user => {
         if (user && user.email.endsWith("@trevor.org")) {
-          if (window.opener) {
-            window.opener.location.reload();
-            window.close();
-          } else {
-            window.location.href = "/Trevor-Day-School-Yearbook/";
-          }
+          window.location.href = "/Trevor-Day-School-Yearbook/";
         }
       });
 
