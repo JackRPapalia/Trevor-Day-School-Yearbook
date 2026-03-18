@@ -30,6 +30,7 @@ fetch(navbarPath)
     });
 
     onAuthStateChanged(auth, async user => {
+      console.log("Auth state changed, user:", user ? user.email : "not logged in");
       const loginItem = document.getElementById("nav-login-btn").parentElement;
       const logoutItem = document.getElementById("nav-logout");
       const seniorFormsItem = document.getElementById("nav-senior-forms");
