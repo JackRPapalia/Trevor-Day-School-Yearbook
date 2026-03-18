@@ -3,7 +3,7 @@ import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase
 import { auth, db } from "./firebase.js";
 
 const isInPages = window.location.pathname.includes("/pages/");
-const navbarPath = isInPages ? "../navbar.html" : "navbar.html";
+const navbarPath = isInPages ? "../resources/navbar.html" : "resources/navbar.html";
 
 fetch(navbarPath)
   .then(response => response.text())
