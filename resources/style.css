@@ -252,3 +252,9 @@ body {
 .faq-item.active .faq-icon {
   transform: rotate(45deg);
 }
+
+.form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

@@ -19,8 +19,46 @@
 
   <!-- Main Content -->
   <div class="main-content">
-    <h1>Welcome to the Trevor Day School Yearbook</h1>
+    <h1>Senior Forms</h1>
   </div>
+  <section class="faqs">
+    <div class="faq-container" id="forms-container"></div>
+  </section>
+
+  <script>
+    fetch('../resources/forms.json')
+      .then(res => res.json())
+      .then(forms => {
+        const container = document.getElementById('forms-container');
+        forms.forEach(form => {
+          const item = document.createElement('div');
+          item.className = 'faq-item';
+          item.innerHTML = `
+            <button class="faq-question">
+              ${form.name}
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="form">
+                <iframe src="${form.src}" width="840" height="${form.height}"
+                  frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+              </div>
+            </div>`;
+          container.appendChild(item);
+
+          item.querySelector('.faq-question').addEventListener('click', function () {
+            const answer = this.nextElementSibling;
+            if (answer.style.maxHeight) {
+              answer.style.maxHeight = null;
+              this.querySelector('.faq-icon').textContent = '+';
+            } else {
+              answer.style.maxHeight = answer.scrollHeight + "px";
+              this.querySelector('.faq-icon').textContent = '−';
+            }
+          });
+        });
+      });
+  </script>
   <script type="module" src="../resources/navbar.js"></script>
 </body>
 

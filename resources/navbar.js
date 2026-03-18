@@ -33,23 +33,30 @@ fetch(navbarPath)
       const loginItem = document.getElementById("nav-login-btn").parentElement;
       const logoutItem = document.getElementById("nav-logout");
       const dashboardItem = document.getElementById("nav-dashboard");
+      const seniorFormsItem = document.getElementById("nav-senior-forms");
 
       loginItem.style.display = user ? "none" : "";
       logoutItem.style.display = user ? "" : "none";
 
       if (user) {
         try {
-          const userDoc = await getDoc(doc(db, "users", user.email));
-          if (userDoc.exists() && userDoc.data().role === "admin") {
-            dashboardItem.style.display = "";
-          } else {
-            dashboardItem.style.display = "none";
-          }
+          const [userDoc, seniorsDoc] = await Promise.all([
+            getDoc(doc(db, "users", user.email)),
+            getDoc(doc(db, "config", "classof2027"))
+          ]);
+
+          dashboardItem.style.display =
+            userDoc.exists() && userDoc.data().role === "admin" ? "" : "none";
+
+          const members = seniorsDoc.exists() ? seniorsDoc.data().members : [];
+          seniorFormsItem.style.display = members.includes(user.email) ? "" : "none";
         } catch {
           dashboardItem.style.display = "none";
+          seniorFormsItem.style.display = "none";
         }
       } else {
         dashboardItem.style.display = "none";
+        seniorFormsItem.style.display = "none";
       }
     });
   });
