@@ -19,8 +19,40 @@
 
   <!-- Main Content -->
   <div class="main-content">
-    <h1>Welcome to the Trevor Day School Yearbook</h1>
+    <h1>Yearbook FAQs</h1>
   </div>
+  <section class="faqs">
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question">
+          How do I submit photos for the yearbook?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>You can submit photos through our online submission portal. Please ensure that your photos are high
+            resolution and adhere to our submission guidelines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    const faqButtons = document.querySelectorAll('.faq-question');
+
+    faqButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+
+        if (answer.style.maxHeight) {
+          // collapse
+          answer.style.maxHeight = null;
+          button.querySelector('.faq-icon').textContent = '+';
+        } else {
+          // expand
+          answer.style.maxHeight = answer.scrollHeight + "px";
+          button.querySelector('.faq-icon').textContent = '−';
+        }
+      });
+    });</script>
   <script type="module" src="../resources/navbar.js"></script>
 </body>
 
