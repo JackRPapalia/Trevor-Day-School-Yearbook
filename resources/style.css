@@ -1,0 +1,294 @@
+/* Nav bar */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background-color: white;
+    color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.logo {
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links ul {
+    display: flex;
+    gap: 3px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: color 0.2s, text-decoration 0.2s;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Main content */
+.main-content h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.main-content p {
+    text-align: center;
+}
+
+body {
+    font-family: 'Source Sans 3', sans-serif;
+    margin: 0;
+    background: #f2f2f2;
+}
+
+#login {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #3a7d44;
+    /* green */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#login:hover {
+    background-color: #2d5a3d;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.admin-header {
+    margin-top: 20px;
+    /* To account for the fixed navbar */
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+
+}
+
+.admin-header h1 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    vertical-align: top;
+}
+
+.staff {
+    margin: 0 auto;
+    align-self: center;
+    width: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0.15);
+    background-color: white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding-top: 10px;
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.staff-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.editor h2 {
+    margin: 16px;
+    font-size: 24px;
+    color: black;
+}
+
+.staff p {
+    margin: 0 16px 16px;
+    font-size: 16px;
+    color: black;
+}
+
+.staff img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    /* makes it a circle */
+    object-fit: cover;
+    /* crops nicely */
+    flex-shrink: 0;
+    /* prevents squishing */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    margin: 16px;
+}
+
+.editor {
+    display: flex;
+}
+
+.faculty-advisors {
+    display: flex;
+    /* row layout */
+    flex-wrap: wrap;
+    /* allow wrapping on smaller screens */
+    justify-content: center;
+    /* center cards horizontally */
+    gap: 20px;
+    /* space between cards */
+    margin-top: 20px;
+}
+
+.faculty-advisors h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.editors h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.team h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.team {
+    display: flex;
+    /* row layout */
+    flex-wrap: wrap;
+    /* allow wrapping on smaller screens */
+    justify-content: center;
+    /* center cards horizontally */
+    gap: 20px;
+    /* space between cards */
+}
+
+.faq {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+    align-items: center;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.faq h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.faq-item {
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+    overflow: hidden;
+    width: 80%;
+    margin-bottom: 16px;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+    text-align: left;
+    border: none;
+    background: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-icon {
+    font-weight: bold;
+    font-size: 24px;
+    transition: transform 0.2s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 16px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer p {
+    margin: 12px 0;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#countdowns {
+    display: flex;           /* enables horizontal layout */
+    justify-content: center; /* centers items horizontally */
+    gap: 40px;               /* space between countdowns */
+    flex-wrap: wrap;         /* allows wrapping to next line if screen is too small */
+    text-align: center;
+}
+
+.countdown-container {
+    font-size: 1.8rem;
+    font-weight: bold;
+    min-width: 200px;        /* optional: set a minimum width for each countdown */
+}
+
+.join-us{
+    width: 400px;
+    margin: 0 auto;
+    background-color: lightgray;
+    text-align: center;
+    
+}
+.join-us h1{
+    font-size: large;
+    text-align: center;
+}
+
+.join-us a{
+    text-align: center;
+}
