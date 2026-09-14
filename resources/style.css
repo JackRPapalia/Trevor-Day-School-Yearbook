@@ -282,6 +282,7 @@ body {
     margin: 0 auto;
     background-color: lightgray;
     text-align: center;
+    border-radius: 10px;
     
 }
 .join-us h1{
