@@ -5,19 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trevor Day School Yearbook</title>
+  <!-- Style sheet -->
   <link rel="stylesheet" href="resources/style.css">
+  <!-- Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- preconnect to the Google Fonts domain to improve loading performance -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- preconnect to the Google Fonts domain to improve loading performance -->
 </head>
 
 <body>
-  <!-- Navigation Menu-->
+  <!-- Display the navbar-->
   <div id="navbar"></div>
-
-  <!-- Main Content -->
+  <!-- Page title header-->
   <div class="main-content">
     <h1>Welcome to the Trevor Day School Yearbook</h1>
     <p>At the heart of Trevor, the Yearbook Club stands as a creative and passionate
@@ -28,6 +29,53 @@
     <a href="https://clubhub.co/dashboard?page=club-page&club=1724166818477x855788812158894100" 
     style="display: block; width: 200px; margin: 0 auto;" target="_blank">Join</a>
   </div>
+  <!-- Display the countdown timers injected from countdown.json-->
+  <div id="countdowns"></div>
+  <!-- Scripts -->
+  <!-- Countdown script -->
+  <script>
+    fetch('resources/countdown.json') // fetch the countdown data from the JSON file
+      .then(res => res.json()) // takes HTTP response and parses it as JSON
+      .then(data => { // once the data is parsed, this function is executed with the countdown data as its argument
+        const items = data.filter(e => e.showOnHome); // filter the countdown events to only include those that should be shown on the homepage
+        if (items.length === 0) return; // if there are no countdown events to show, exit the function
+
+        const container = document.getElementById('countdowns'); // get the container element where the countdown timers will be displayed
+        items.forEach((event, index) => { // loop through each countdown event and create the necessary HTML elements to display it
+          const div = document.createElement('div'); // create a div to hold the countdown event
+          div.classList.add('countdown-container'); // create a container for each countdown event
+
+          const title = document.createElement('div'); // create a div to display the title of the countdown event
+          title.classList.add('countdown-title'); // create a div to display the title of the countdown event
+          title.textContent = event.title; // create a div to display the title of the countdown event
+
+          const timer = document.createElement('div'); // create a div to display the countdown timer
+          timer.classList.add('countdown-timer'); // create a div to display the countdown timer
+          timer.id = `countdown-${index}`; // assign a unique ID to the timer for later reference
+          timer.textContent = 'Loading...'; // initial text while the countdown is being calculated
+
+          div.appendChild(title); // add the title to the countdown container
+          div.appendChild(timer); // add the title and timer to the countdown container
+          container.appendChild(div); // add the countdown container to the page
+
+          const targetDate = new Date(event.date).getTime(); // convert the event date to a timestamp
+          const interval = setInterval(() => { // update the countdown every second
+            const now = new Date().getTime(); // get the current timestamp
+            const distance = targetDate - now; // calculate the time between now and the target date
+            if (distance <= 0) { // if the countdown has reached zero, stop the timer and display "Time's up!"
+              clearInterval(interval); // stop the interval to prevent further updates
+              timer.textContent = "Time's up!"; // update the timer text to indicate the countdown has ended
+              return; // exit the function to prevent further calculations and updates
+            }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24)); // calculate the number of days remaining in the countdown
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); // calculate the number of hours remaining in the countdown, excluding the days
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)); // calculate the number of minutes remaining in the countdown, excluding the days and hours
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000); // calculate the number of seconds remaining in the countdown, excluding the days, hours, and minutes
+            timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`; // update the timer text to show the remaining time in a readable format
+          }, 1000);
+        });
+      });
+  </script>
   <script type="module" src="resources/navbar.js"></script>
 </body>
 

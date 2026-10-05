@@ -14,17 +14,11 @@
 </head>
 
 <body>
-  <!-- Navigation Menu-->
   <div id="navbar"></div>
 
-  <!-- Main Content -->
   <div class="main-content">
     <h1>Senior Forms</h1>
-
-    <!-- Countdowns -->
     <div id="countdowns">Loading...</div>
-
-    <!-- Forms -->
   </div>
   <section class="faqs">
     <div class="faq-container" id="forms-container"></div>
@@ -71,10 +65,9 @@
       .then(res => res.json())
       .then(data => {
         const container = document.getElementById('countdowns');
-        container.innerHTML = ''; // clear "Loading..."
+        container.innerHTML = '';
 
         if (!data || data.length === 0) {
-          // No countdowns: leave container empty
           return;
         }
 

@@ -1,4 +1,11 @@
-/* Nav bar */
+body {
+    font-family: 'Source Sans 3', sans-serif;
+    margin: 0;
+    background: linear-gradient(to bottom, #890000, black);
+    background-attachment: fixed;
+}
+
+/* Nav Bar*/
 .nav {
     display: flex;
     justify-content: space-between;
@@ -43,7 +50,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Main content */
 .main-content h1 {
     text-align: center;
     font-size: 36px;
@@ -66,7 +72,6 @@ body {
     font-weight: bold;
     color: white;
     background-color: #3a7d44;
-    /* green */
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -78,22 +83,57 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.admin-header {
-    margin-top: 20px;
-    /* To account for the fixed navbar */
+/* staff Section Styles */
+.editors h1 {
+    width: 100%;
     text-align: center;
     font-size: 36px;
     font-weight: bold;
     color: black;
-
+    margin-bottom: 20px;
 }
 
-.admin-header h1 {
+.editor {
+    display: flex;
+}
+
+.editor h2 {
+    margin: 16px;
+    font-size: 24px;
+    color: black;
+}
+
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team h1 {
+    width: 100%;
     text-align: center;
     font-size: 36px;
     font-weight: bold;
     color: black;
-    vertical-align: top;
+    margin-bottom: 20px;
+}
+
+.faculty-advisors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.faculty-advisors h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 20px;
 }
 
 .staff {
@@ -115,10 +155,14 @@ body {
     flex-direction: column;
 }
 
-.editor h2 {
+.staff img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     margin: 16px;
-    font-size: 24px;
-    color: black;
 }
 
 .staff p {
@@ -127,73 +171,7 @@ body {
     color: black;
 }
 
-.staff img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    /* makes it a circle */
-    object-fit: cover;
-    /* crops nicely */
-    flex-shrink: 0;
-    /* prevents squishing */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    margin: 16px;
-}
-
-.editor {
-    display: flex;
-}
-
-.faculty-advisors {
-    display: flex;
-    /* row layout */
-    flex-wrap: wrap;
-    /* allow wrapping on smaller screens */
-    justify-content: center;
-    /* center cards horizontally */
-    gap: 20px;
-    /* space between cards */
-    margin-top: 20px;
-}
-
-.faculty-advisors h1 {
-    width: 100%;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 20px;
-}
-
-.editors h1 {
-    width: 100%;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 20px;
-}
-
-.team h1 {
-    width: 100%;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 20px;
-}
-
-.team {
-    display: flex;
-    /* row layout */
-    flex-wrap: wrap;
-    /* allow wrapping on smaller screens */
-    justify-content: center;
-    /* center cards horizontally */
-    gap: 20px;
-    /* space between cards */
-}
-
+/* FAQ Section Styles */
 .faq {
     max-width: 600px;
     margin: 0 auto;
@@ -202,25 +180,28 @@ body {
     align-items: center;
 }
 
+.faq h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .faq-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.faq h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
 .faq-item {
     border-radius: 12px;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 16px;
     overflow: hidden;
     width: 80%;
     margin-bottom: 16px;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
 }
 
 .faq-question {
@@ -253,28 +234,25 @@ body {
     margin: 12px 0;
 }
 
-.faq-item.active .faq-icon {
-    transform: rotate(45deg);
-}
-
 .form {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
+/* Countdown Styles */
 #countdowns {
-    display: flex;           /* enables horizontal layout */
-    justify-content: center; /* centers items horizontally */
-    gap: 40px;               /* space between countdowns */
-    flex-wrap: wrap;         /* allows wrapping to next line if screen is too small */
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
     text-align: center;
 }
 
 .countdown-container {
     font-size: 1.8rem;
     font-weight: bold;
-    min-width: 200px;        /* optional: set a minimum width for each countdown */
+    min-width: 200px;
 }
 
 .join-us{
