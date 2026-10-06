@@ -1,18 +1,44 @@
+/* ==========================================================
+   GLOBAL (every page)
+   ========================================================== */
+
+/* Base page styles: font, white text, red-to-black gradient background */
 body {
     font-family: 'Source Sans 3', sans-serif;
     margin: 0;
+    color: white;
     background: linear-gradient(to bottom, #890000, black);
     background-attachment: fixed;
 }
 
-/* Nav Bar*/
+/* Page title and intro text (the .main-content block on each page) */
+.main-content h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 100px;
+    margin-bottom: 120px;
+    color: white;
+}
+
+.main-content p {
+    text-align: center;
+    margin-bottom: 160px;
+    color: white;
+}
+
+
+/* ==========================================================
+   NAVBAR (resources/navbar.html, loaded into every page)
+   ========================================================== */
+
+/* Red bar fixed to the top of the screen */
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px 20px;
-    background-color: white;
-    color: transparent;
+    background-color: #d62828;
+    color: black;
     position: fixed;
     top: 0;
     left: 0;
@@ -22,12 +48,15 @@ body {
     z-index: 1000;
 }
 
+/* Yearbook logo image on the left */
 .logo {
-    color: black;
-    font-size: 24px;
-    font-weight: bold;
+    width: 200px;
+    height: auto;
+    margin: 5px 0;
+    display: block;
 }
 
+/* Horizontal list of page links */
 .nav-links ul {
     display: flex;
     gap: 3px;
@@ -36,36 +65,229 @@ body {
     padding: 0;
 }
 
+/* Individual nav links, with an underline and shadow on hover */
 .nav-links a {
     color: black;
     text-decoration: none;
     font-size: 18px;
     padding: 5px 10px;
-    transition: color 0.2s, text-decoration 0.2s;
+    border-radius: 6px;
+    transition: box-shadow 0.2s;
 }
 
 .nav-links a:hover {
     text-decoration: underline;
-    border-radius: 6px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.main-content h1 {
+
+/* ==========================================================
+   HOME PAGE (index.html)
+   ========================================================== */
+
+/* Grid of links: 3 columns on desktop */
+.link-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 20px;
+}
+
+/* Each link is a large clickable tile */
+.link-grid a {
+    display: block;
+    padding: 40px 20px;
+    font-family: 'Chewy', cursive;
+    font-size: 24px;
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+/* Tiles light up slightly on hover */
+.link-grid a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* On phones, stack the link grid into a single column */
+@media (max-width: 600px) {
+    .link-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ==========================================================
+   STAFF PAGE (pages/staff.html)
+   ========================================================== */
+
+/* Section headings: Editors, Team, Faculty Advisors */
+.editors h1,
+.team h1,
+.faculty-advisors h1 {
+    width: 100%;
     text-align: center;
     font-size: 36px;
+    font-weight: bold;
+    color: white;
     margin-bottom: 20px;
 }
 
-.main-content p {
+/* Team and faculty advisor sections wrap their cards into centered rows */
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.faculty-advisors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* White card for one staff member (photo on the left, info on the right) */
+.staff {
+    margin: 0 auto 40px;
+    align-self: center;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background-color: white;
+    color: black;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding-top: 10px;
+    display: flex;
+}
+
+/* Name, role, and email stacked vertically inside the card */
+.staff-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Round profile photo */
+.staff img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    margin: 16px;
+}
+
+/* Text inside the card */
+.staff p {
+    margin: 0 16px 16px;
+    font-size: 16px;
+    color: black;
+}
+
+
+/* ==========================================================
+   FAQ DROPDOWNS (pages/faq.html and pages/senior_forms.html)
+   ========================================================== */
+
+/* Centers the list of FAQ items */
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* White card for one question/answer pair */
+.faq-item {
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 80%;
+    margin-bottom: 16px;
+}
+
+/* Clickable question button that spans the whole card */
+.faq-question {
+    width: 100%;
+    padding: 16px;
+    font-family: inherit;
+    font-size: 18px;
+    color: black;
+    text-align: left;
+    border: none;
+    background: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* "+" icon that rotates into an "x" when the item is open */
+.faq-icon {
+    font-weight: bold;
+    font-size: 24px;
+    transition: transform 0.2s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+/* Answer is hidden (height 0) until the item is opened */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 16px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer p {
+    margin: 12px 0;
+}
+
+
+/* ==========================================================
+   SENIOR FORMS PAGE (pages/senior_forms.html)
+   ========================================================== */
+
+/* Centers each embedded form */
+.form {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Row of countdown timers built from countdown.json */
+#countdowns {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
     text-align: center;
 }
 
-body {
-    font-family: 'Source Sans 3', sans-serif;
-    margin: 0;
-    background: #f2f2f2;
+/* One countdown (title + timer) */
+.countdown-container {
+    font-size: 1.8rem;
+    font-weight: bold;
+    min-width: 200px;
 }
 
+
+/* ==========================================================
+   UNUSED: no page currently uses these selectors.
+   Kept in case they are added back; safe to delete otherwise.
+   ========================================================== */
+
+/* Green login button (#login) */
 #login {
     padding: 15px 30px;
     font-size: 18px;
@@ -83,16 +305,19 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* staff Section Styles */
-.editors h1 {
-    width: 100%;
+/* Old FAQ page wrapper (the pages now use .faqs instead) */
+.faq {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.faq h1 {
     text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: black;
     margin-bottom: 20px;
 }
 
+/* Old editor layout on the staff page */
 .editor {
     display: flex;
 }
@@ -103,171 +328,17 @@ body {
     color: black;
 }
 
-.team {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.team h1 {
-    width: 100%;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 20px;
-}
-
-.faculty-advisors {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.faculty-advisors h1 {
-    width: 100%;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    color: black;
-    margin-bottom: 20px;
-}
-
-.staff {
-    margin: 0 auto;
-    align-self: center;
-    width: 400px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0.15);
-    background-color: white;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    padding-top: 10px;
-    display: flex;
-    margin-bottom: 40px;
-}
-
-.staff-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.staff img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    margin: 16px;
-}
-
-.staff p {
-    margin: 0 16px 16px;
-    font-size: 16px;
-    color: black;
-}
-
-/* FAQ Section Styles */
-.faq {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: sans-serif;
-    align-items: center;
-}
-
-.faq h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.faq-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.faq-item {
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 80%;
-    margin-bottom: 16px;
-}
-
-.faq-item.active .faq-icon {
-    transform: rotate(45deg);
-}
-
-.faq-question {
-    width: 100%;
-    padding: 16px;
-    font-size: 18px;
-    text-align: left;
-    border: none;
-    background: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-.faq-icon {
-    font-weight: bold;
-    font-size: 24px;
-    transition: transform 0.2s ease;
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 16px;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-}
-
-.faq-answer p {
-    margin: 12px 0;
-}
-
-.form {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-/* Countdown Styles */
-#countdowns {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    text-align: center;
-}
-
-.countdown-container {
-    font-size: 1.8rem;
-    font-weight: bold;
-    min-width: 200px;
-}
-
-.join-us{
-    width: 400px;
+/* "Join the Yearbook Team" box (removed from index.html) */
+.join-us {
+    width: 90%;
+    max-width: 400px;
     margin: 0 auto;
     background-color: lightgray;
+    color: black;
     text-align: center;
     border-radius: 10px;
-    
-}
-.join-us h1{
-    font-size: large;
-    text-align: center;
 }
 
-.join-us a{
-    text-align: center;
+.join-us h1 {
+    font-size: large;
 }
