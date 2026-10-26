@@ -1,18 +1,22 @@
+<!-- Site navigation bar; navbar.js inserts this into the #navbar div on every page -->
 <nav class="nav">
+    <!-- School logo on the left side of the bar -->
     <div class="logo">
         <img src="//bbk12e1-cdn.myschoolcdn.com/ftpimages/376/logo/weblogo360x59.png" alt="Trevor Day School" class="logo">
     </div>
+    <!-- Three-bar "hamburger" icon for opening the menu on mobile -->
     <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+        <span class="bar"></span> <!-- Top bar of the icon -->
+        <span class="bar"></span> <!-- Middle bar of the icon -->
+        <span class="bar"></span> <!-- Bottom bar of the icon -->
     </div>
+    <!-- List of page links on the right side of the bar -->
     <div class="nav-links">
         <ul>
             <li><a href="/Trevor-Day-School-Yearbook/">Home</a></li> <!-- Points to the root of the website -->
             <li><a href="/Trevor-Day-School-Yearbook/pages/about.html">About</a></li> <!-- Points to the about page -->
             <li><a href="/Trevor-Day-School-Yearbook/pages/faq.html">FAQ</a></li> <!-- Points to the FAQ page -->
-            <li id="nav-senior-forms" style="display:none"><a href="/Trevor-Day-School-Yearbook/pages/senior_forms.html">Senior Forms</a></li> <!-- Points to the senior forms page -->
+            <li id="nav-senior-forms" style="display:none"><a href="/Trevor-Day-School-Yearbook/pages/senior_forms.html">Senior Forms</a></li> <!-- Points to the senior forms page; hidden unless the logged-in user is on the senior list -->
             <li><a href="/Trevor-Day-School-Yearbook/pages/staff.html">Staff</a></li> <!-- Points to the staff page -->
             <li><a href="/Trevor-Day-School-Yearbook/pages/contact.html">Contact</a></li> <!-- Points to the contact page -->
             <li id="nav-logout" style="display:none"><a href="#" id="logout-btn">Logout</a></li> <!-- Logout button, initially hidden and will be shown when the user is logged in -->

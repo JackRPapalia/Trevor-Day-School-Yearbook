@@ -1,25 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Tells the browser this is an HTML5 document -->
+<html lang="en"> <!-- Root element; lang="en" marks the page as English -->
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trevor Day School Yearbook</title>
-  <link rel="stylesheet" href="../resources/style.css">
+  <meta charset="UTF-8"> <!-- Sets the page character encoding so special characters display correctly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page scale properly on phones -->
+  <title>Trevor Day School Yearbook</title> <!-- Text shown in the browser tab -->
+  <link rel="stylesheet" href="../resources/style.css"> <!-- Shared site style sheet -->
+  <!-- Loads the Playfair Display and Source Sans 3 fonts from Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Opens an early connection to Google Fonts to speed up loading -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Opens an early connection to the Google Fonts file server -->
 </head>
 
 <body>
-  <div id="navbar"></div>
+  <div id="navbar"></div> <!-- Empty placeholder; navbar.js fills it with resources/navbar.html -->
 
+  <!-- Page title header -->
   <div class="main-content">
     <h1>Welcome to the Trevor Day School Yearbook</h1>
   </div>
-  <script type="module" src="../resources/navbar.js"></script>
+  <script type="module" src="../resources/navbar.js"></script> <!-- Loads the navbar and handles login/logout -->
 </body>
 
 </html>

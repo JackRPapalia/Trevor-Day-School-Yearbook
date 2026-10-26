@@ -1,35 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Tells the browser this is an HTML5 document -->
+<html lang="en"> <!-- Root element; lang="en" marks the page as English -->
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trevor Day School Yearbook</title>
-  <link rel="stylesheet" href="../resources/style.css">
+  <meta charset="UTF-8"> <!-- Sets the page character encoding so special characters display correctly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page scale properly on phones -->
+  <title>Trevor Day School Yearbook</title> <!-- Text shown in the browser tab -->
+  <link rel="stylesheet" href="../resources/style.css"> <!-- Shared site style sheet -->
+  <!-- Loads the Playfair Display and Source Sans 3 fonts from Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Opens an early connection to Google Fonts to speed up loading -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Opens an early connection to the Google Fonts file server -->
 </head>
 
 <body>
-  <div id="navbar"></div>
+  <div id="navbar"></div> <!-- Empty placeholder; navbar.js fills it with resources/navbar.html -->
 
+  <!-- Page title header -->
   <div class="main-content">
     <h1>Senior Forms</h1>
-    <div id="countdowns">Loading...</div>
+    <div id="countdowns">Loading...</div> <!-- Countdown timers are added here by the second script below -->
   </div>
+  <!-- One dropdown per form is added here by the first script below, using forms.json -->
   <section class="faqs">
     <div class="faq-container" id="forms-container"></div>
   </section>
 
+  <!-- Builds a dropdown with an embedded form for each entry in forms.json -->
   <script>
     fetch('../resources/forms.json')
       .then(res => res.json())
       .then(forms => {
         const container = document.getElementById('forms-container');
         forms.forEach(form => {
+          // Dropdown card: the form name is the button, the embedded form is the hidden content
           const item = document.createElement('div');
           item.className = 'faq-item';
           item.innerHTML = `
@@ -45,6 +50,7 @@
             </div>`;
           container.appendChild(item);
 
+          // Open or close the form when its name is clicked
           item.querySelector('.faq-question').addEventListener('click', function () {
             const answer = this.nextElementSibling;
             if (answer.style.maxHeight) {
@@ -58,7 +64,9 @@
         });
       });
   </script>
+  <!-- Builds a live countdown timer for each event in countdown.json -->
   <script>
+    // Reads countdown.json from GitHub; the ?t= timestamp stops the browser from using an old cached copy
     const jsonURL = 'https://raw.githubusercontent.com/JackRPapalia/Trevor-Day-School-Yearbook/main/resources/countdown.json?t=' + new Date().getTime();
 
     fetch(jsonURL)
@@ -67,18 +75,22 @@
         const container = document.getElementById('countdowns');
         container.innerHTML = '';
 
+        // No events: leave the countdown area empty
         if (!data || data.length === 0) {
           return;
         }
 
         data.forEach((event, index) => {
+          // Wrapper for one countdown
           const div = document.createElement('div');
           div.classList.add('countdown-container');
 
+          // Event name shown above the timer
           const title = document.createElement('div');
           title.classList.add('countdown-title');
           title.textContent = event.title;
 
+          // Timer text that updates every second
           const timer = document.createElement('div');
           timer.classList.add('countdown-timer');
           timer.id = `countdown-${index}`;
@@ -88,17 +100,20 @@
           div.appendChild(timer);
           container.appendChild(div);
 
+          // Every second, recalculate the time left until the event
           const targetDate = new Date(event.date).getTime();
           const interval = setInterval(() => {
             const now = new Date().getTime();
             const distance = targetDate - now;
 
+            // Stop the timer once the event date has passed
             if (distance <= 0) {
               clearInterval(interval);
               timer.textContent = "Time's up!";
               return;
             }
 
+            // Split the remaining milliseconds into days, hours, minutes, and seconds
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -108,12 +123,13 @@
           }, 1000);
         });
       })
+      // Show an error message if countdown.json can't be loaded
       .catch(err => {
         document.getElementById('countdowns').textContent = "Error loading countdowns";
         console.error(err);
       });
   </script>
-  <script type="module" src="../resources/navbar.js"></script>
+  <script type="module" src="../resources/navbar.js"></script> <!-- Loads the navbar and handles login/logout -->
 </body>
 
 </html>

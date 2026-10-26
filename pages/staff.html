@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Tells the browser this is an HTML5 document -->
+<html lang="en"> <!-- Root element; lang="en" marks the page as English -->
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trevor Day School Yearbook</title>
+  <meta charset="UTF-8"> <!--sets page character encoding-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page scale properly on phones -->
+  <title>Trevor Day School Yearbook</title> <!-- Text shown in the browser tab -->
   <!-- Style sheet -->
   <link rel="stylesheet" href="../resources/style.css">
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Opens an early connection to Google Fonts to speed up loading -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Opens an early connection to the Google Fonts file server -->
+  <!-- Loads the Playfair Display and Source Sans 3 fonts from Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
@@ -26,21 +27,24 @@
 
   <!-- Staff cards are added to each section from the Google Sheet by staff.js -->
   <section class="yearbook-staff">
+    <!-- Rows with Section "Editors" in the sheet go here -->
     <section class="editors" id="editors">
       <h1>Editors</h1>
     </section>
+    <!-- Rows with Section "Staff" in the sheet go here -->
     <section class="team" id="team">
       <h1>Staff</h1>
     </section>
+    <!-- Rows with Section "Faculty Advisors" in the sheet go here -->
     <section class="faculty-advisors" id="faculty-advisors">
       <h1>Faculty Advisors</h1>
     </section>
   </section>
 
   <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-  <script src="../resources/staff.js"></script>
-  <script type="module" src="../resources/navbar.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script> <!-- PapaParse library, used by staff.js to read the sheet's CSV -->
+  <script src="../resources/staff.js"></script> <!-- Fetches the staff sheet and builds the staff cards -->
+  <script type="module" src="../resources/navbar.js"></script> <!-- Loads the navbar and handles login/logout -->
 </body>
 
 </html>
